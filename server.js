@@ -59,7 +59,7 @@ app.use('/api', Api);
 app.get('/', (req, res, next) => {
   res.send('<h1>api-covid</h1>');
 });
-var port = normalizePort(process.env.PORT || '3000');
+var port = (process.env.PORT || '3000');
 
 app.listen(port, (req, res, next) => {
   console.log(`server running at port ${port}`);
