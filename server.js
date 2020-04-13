@@ -30,10 +30,13 @@ const Api = require('./route/api');
   if (!fs.existsSync(path.join(__dirname,'db/access.log'))) {
     fs.mkdirSync('db');
     }
-    const accessLogSteam = fs.createWriteStream(path.join(__dirname, '/db/access.log'),{flags: 'a'})
-    app.use(morgan('tiny',{stream: accessLogSteam}))
-    // app.use(morgan(':method\t\t:url\t\t:status\t\t:response-time-ms\n',{stream: accessLogSteam}))
-// body parser middle ware
+    const accessLogSteam = fs.createWriteStream(path.join(__dirname, '/db/access.log'),{ flags: 'a+' })
+    
+    morgan.token('response-time-ms', function getResponse(req,res) {
+const time = this['response-time'](req,res,0) < 10 ? `0${this['response-time'](req,res,0)}ms` : `${this['response-time'](req,res,0)}ms`;
+return time
+    });
+    app.use(morgan(':method\t:url\t:status\t:response-time-ms',{stream: accessLogSteam}));
 
 
 // app.use(morgan(' :method   :url    :status   :response-time'))
