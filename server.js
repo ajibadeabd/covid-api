@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 const express = require('express');
 const bodyParser = require('body-parser');
-const exphbs = require('express-handlebars');
+// const exphbs = require('express-handlebars');
 const path = require('path');
 const mongoose = require('mongoose');
 const expressWinston = require('express-winston');
@@ -34,13 +34,6 @@ mongoose.connect(DB.mongoURL,
   { useNewUrlParser: true, useUnifiedTopology: true})
   .then(() => console.log(`${DB.mongoURL} connected`))
   .catch((err) => console.log(err));
-
-
-// handlebars middleware
-app.engine('handlebars', exphbs({
-  defaultLayout: 'main',
-}));
-app.set('view engine', 'handlebars');
 
 
 
