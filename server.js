@@ -26,14 +26,14 @@ app.use(bodyParser.json());
 const Api = require('./route/api');
 
 
-mongoose.promise = global.promise;
+// mongoose.promise = global.promise;
 
-const DB = require('./config/database');
+// const DB = require('./config/database');
 
-mongoose.connect(DB.mongoURL,
-  { useNewUrlParser: true, useUnifiedTopology: true})
-  .then(() => console.log(`${DB.mongoURL} connected`))
-  .catch((err) => console.log(err));
+// mongoose.connect(DB.mongoURL,
+//   { useNewUrlParser: true, useUnifiedTopology: true})
+//   .then(() => console.log(`${DB.mongoURL} connected`))
+//   .catch((err) => console.log(err));
 
 
 
