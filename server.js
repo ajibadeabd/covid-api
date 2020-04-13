@@ -36,7 +36,7 @@ const Api = require('./route/api');
 const time = this['response-time'](req,res,0) < 10 ? `0${this['response-time'](req,res,0)}ms` : `${this['response-time'](req,res,0)}ms`;
 return time
     })
-    app.use(morgan(':method\t\t:url\t\t:status\t\t:response-time ms\n',{stream: accessLogSteam}))
+    app.use(morgan(':method\t\t:url\t\t:status\t\t:response-time-ms\n',{stream: accessLogSteam}))
 // body parser middle ware
 
 
