@@ -65,7 +65,7 @@ router.post('/v1/on-covid-19/xml', (req, res, next) => {
 .then(covidResult=>{
    console.log(covidResult)
 
-   res.status(200).type('application/xml').send(covidResult)
+   res.status(200).type('application/xml').send(covidResult);
 })
     
 
