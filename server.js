@@ -26,16 +26,6 @@ app.use(bodyParser.json());
 const Api = require('./route/api');
 
 
-// mongoose.promise = global.promise;
-
-// const DB = require('./config/database');
-
-// mongoose.connect(DB.mongoURL,
-//   { useNewUrlParser: true, useUnifiedTopology: true})
-//   .then(() => console.log(`${DB.mongoURL} connected`))
-//   .catch((err) => console.log(err));
-
-
 
   if (!fs.existsSync(path.join(__dirname,'db/access.log'))) {
     fs.mkdirSync('db');
@@ -69,7 +59,7 @@ app.use('/api', Api);
 app.get('/', (req, res, next) => {
   res.send('<h1>api-covid</h1>');
 });
-const port =  5000;
+var port = normalizePort(process.env.PORT || '3000');
 
 app.listen(port, (req, res, next) => {
   console.log(`server running at port ${port}`);
