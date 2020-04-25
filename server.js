@@ -11,9 +11,18 @@ const morgan = require('morgan');
 var helmet = require('helmet')
 var fs = require('fs')
 var cors = require('cors')
+const exphbs = require('express-handlebars')
+
 var dotenv = require('dotenv')
 const compression = require('compression')
 const app = express();
+
+
+app.engine("handlebars",exphbs({
+  defaultLayout:"main"
+}));
+app.set('view engine','handlebars')
+
 
 app.use(compression());
 app.use(express.static('db'));
@@ -39,14 +48,13 @@ return time
     app.use(morgan(':method\t:url\t:status\t:response-time-ms',{stream: accessLogSteam}));
 
 
-// app.use(morgan(' :method   :url    :status   :response-time'))
 // static file
 app.use(express.static(path.join(__dirname, 'public')));
 // global variable
 app.use((req, res, next) => {
   // res.locals.error = req.flash('error');
-  res.locals.user = req.user || null;
-  res.locals.session = req.session;
+  // res.locals.user = req.user || null;
+  // res.locals.session = req.session;
   next();
 });
 
@@ -56,7 +64,8 @@ app.use('/api', Api);
 
 
 app.get('/', (req, res, next) => {
-  res.send('<h1>api-covid</h1>');
+  res.render('index')
+  
 });
 var port = (process.env.PORT || '3000');
 
